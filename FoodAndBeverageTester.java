@@ -29,15 +29,72 @@ public class FoodAndBeverageTester {
 
 			boolean exitInit = false;
 
+
+
 			while(!exitInit){
 
 				addItemToDB();
+				clrscr();		
+				System.out.println("\nItem(s) recorded: \n" + foodDB.size() + " Food\n" + bevDB.size() + " Beverage\nTotal: " + (foodDB.size() + bevDB.size()));
+				System.out.println("Add more items? [Y/N]");
+				String choice = in.nextLine();
 
-				System.out.println("Item(s) recorded: \n" + foodDB.size() + "Food\n" + bevDB.size() + "Beverage");
-				
+				if(choice.equals("Y") || choice.equals("y")){
+					exitInit = true;
+				}else{
+					exitInit = false;
+				}
+
+			}
+
+			//// now we have items in our database, cont
+
+			System.out.println("Select an operation: \n[1] Add more items\n[2] Enter sale mode");
+			String operation = in.nextLine();
+
+			switch(operation){
+
+				case "1":{
+
+					exitInit = false;
+
+					while(!exitInit){
+
+						addItemToDB();
+						clrscr();		
+						System.out.println("\nItem(s) recorded: \n" + foodDB.size() + " Food\n" + bevDB.size() + " Beverage\nTotal: " + (foodDB.size() + bevDB.size()));
+						System.out.println("Add more items? [Y/N]");
+						String choice = in.nextLine();
+
+						if(choice.equals("Y") || choice.equals("y")){
+							exitInit = true;
+						}else{
+					exitInit = false;
+				}
+
+					}
+
+
+					break;
+				}
+
+				case "2":{
+
+					System.out.println("Entering sale mode will not allow you to edit items anymore. Proceed? [Y/N]");
+					String choice = in.nextLine();
+
+					if(choice.equals("Y") || choice.equals("y")){
+						startSale();
+					}else{
+					exitInit = false;
+				}
+
+					break;
+				}
 
 
 			}
+
 
 
 
@@ -102,6 +159,60 @@ public class FoodAndBeverageTester {
 
 		}
 
+
+	}
+
+	public static void startSale(){
+
+		clrscr();
+
+		System.out.println("\nOnline Shop V1.0 [SALE MODE]\nWelcome to the online store! Pick a menu:");
+
+		System.out.println("[1] Food Menu\n[2] Beverage Menu");
+		Scanner in = new Scanner(System.in);
+		String menuChoice = in.nextLine();
+
+		printMenu(menuChoice);
+		
+	}
+
+	public static void printMenu(String menuChoice){
+
+		switch(menuChoice){
+
+			case "1":{
+
+
+				for(int i=0;i<foodDB.size();i++){
+
+					if(foodDB.get(i).getStock() >= 1){
+						System.out.println("[" + (i+1) + "] " + foodDB.get(i).getName() + " RM:" + foodDB.get(i).getPrice());
+					}else{
+						System.out.println("[" + (i+1) + "] " + foodDB.get(i).getName() + " RM:" + foodDB.get(i).getPrice() + "[Out of Stock]");
+					}
+
+
+				}
+
+				break;
+			}
+
+			case "2":{
+
+				for(int i=0;i<bevDB.size();i++){
+
+					if(bevDB.get(i).getStock() >= 1){
+						System.out.println("[" + (i+1) + "] " + bevDB.get(i).getName() + " RM:" + bevDB.get(i).getPrice());
+					}else{
+						System.out.println("[" + (i+1) + "] " + bevDB.get(i).getName() + " RM:" + bevDB.get(i).getPrice() + "[Out of Stock]");
+					}
+
+
+				}
+			}
+
+
+		}
 
 	}
 

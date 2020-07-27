@@ -12,20 +12,20 @@ public class Item {
 		this.itemStock = _is;
 	}
 
-	public void setPrice(int _price){		
-		this.itemPrice = _price;
+	public double getPrice(){		
+		return this.itemPrice;
 	}
 
-	public void setName(String _name){		
-		this.itemName = _name;
+	public String getName(){		
+		return this.itemName;
 	}
 
-	public void setStock(int _stock){		
-		this.itemStock = _stock;
+	public int getStock(){		
+		return this.itemStock;
 	}
 
-	public void setType(String _type){
-		this.itemType = _type;
+	public String getType(){
+		return this.itemType;
 	}
 
 }
